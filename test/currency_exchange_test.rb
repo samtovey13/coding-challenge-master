@@ -16,8 +16,14 @@ class CurrencyExchangeTest < Test::Unit::TestCase
     assert_equal correct_rate, CurrencyExchange.rate(Date.new(2018,11,22), "GBP", "USD")
   end
 
-  def test_base_currency_exchange_is_correct
+  def test_to_base_currency_exchange_is_correct
     correct_rate = 0.007763975155279502
     assert_equal correct_rate, CurrencyExchange.rate(Date.new(2018,11,22), "JPY", "EUR")
   end
+
+  def test_from_base_currency_exchange_is_correct
+    correct_rate = 128.8
+    assert_equal correct_rate, CurrencyExchange.rate(Date.new(2018,11,22), "EUR", "JPY")
+  end
+
 end
