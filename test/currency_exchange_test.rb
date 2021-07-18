@@ -6,6 +6,10 @@ require 'date'
 class CurrencyExchangeTest < Test::Unit::TestCase
   def setup
   end
+  
+  def test_currency_exchange_returns_a_float
+    assert_instance_of Float, CurrencyExchange.rate(Date.new(2018,11,22), "GBP", "USD")
+  end
 
   def test_non_base_currency_exchange_is_correct
     correct_rate = 1.2870493690602498
