@@ -6,14 +6,14 @@ require 'date'
 class CurrencyExchangeTest < Test::Unit::TestCase
   def setup
   end
-  
+
   def test_currency_exchange_returns_a_float
     assert_instance_of Float, CurrencyExchange.rate(Date.new(2018,11,22), "GBP", "USD")
   end
 
-  def test_non_base_currency_exchange_is_correct
-    correct_rate = 1.2870493690602498
-    assert_equal correct_rate, CurrencyExchange.rate(Date.new(2018,11,22), "GBP", "USD")
+  def test_from_base_currency_exchange_is_correct
+    correct_rate = 128.8
+    assert_equal correct_rate, CurrencyExchange.rate(Date.new(2018,11,22), "EUR", "JPY")
   end
 
   def test_to_base_currency_exchange_is_correct
@@ -21,9 +21,15 @@ class CurrencyExchangeTest < Test::Unit::TestCase
     assert_equal correct_rate, CurrencyExchange.rate(Date.new(2018,11,22), "JPY", "EUR")
   end
 
-  def test_from_base_currency_exchange_is_correct
-    correct_rate = 128.8
-    assert_equal correct_rate, CurrencyExchange.rate(Date.new(2018,11,22), "EUR", "JPY")
+  def test_non_base_currency_exchange_is_correct
+    correct_rate = 1.2870493690602498
+    assert_equal correct_rate, CurrencyExchange.rate(Date.new(2018,11,22), "GBP", "USD")
+  end
+
+  def test_both_currencies_equal_returns_1
+    correct_rate = 1.0
+    assert_equal correct_rate, CurrencyExchange.rate(Date.new(2018,11,22), "GBP", "GBP")
+    assert_equal correct_rate, CurrencyExchange.rate(Date.new(2018,11,22), "EUR", "EUR")
   end
 
   # Error handling
@@ -36,7 +42,7 @@ class CurrencyExchangeTest < Test::Unit::TestCase
     end
   end
 
-  def test_exception_received_for_missing_from_currency
+  def test_exception_received_for_missing_currency
     assert_raises StandardError do
       CurrencyExchange.rate(Date.new(2018,11,22), "", "EUR")
     end
