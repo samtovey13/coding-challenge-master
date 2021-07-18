@@ -1,5 +1,6 @@
 # FreeAgent Coding Challenge
-*Disclaimer: This was my first time using Ruby!*
+*Disclaimer: This was my first time using Ruby!* :sweat_smile:
+<p>&nbsp;</p>
 
 ## The Brief
 
@@ -9,11 +10,13 @@
 * The method definition should not be changed.
 * This method must return the exchange rate between `from_currency` and `to_currency` on `date` as a float.
 * If the method is unable to calculate the exchange rate requested, it should raise an exception.
-* If there is no rate for the date provided, it should raise an exception.
+* If there is no rate for the date provided, it should raise an exception.  
+<p>&nbsp;</p>
 
 ## Solution Setup and Run Instructions
 
-No additional setup required.
+No additional setup required.  
+<p>&nbsp;</p>
 
 ## Design Decisions
 
@@ -31,7 +34,8 @@ After getting the calculator working I refactored my code using the variables `t
 
 My test suite echoes these 4 successful scenarios in the calculator, testing for each one separately. I added a further test to ensure that the result is returned as a float. The final tests are focused on error handling and check for the correct exceptions being raised depending on the reason for error.
 
-At the start of the CurrencyExchange.rate method the base currency, data type and data source have been declared - these could be amended if needed for a different data source.
+At the start of the `CurrencyExchange.rate` method the `base_currency`, `data_type` and `data_source` have been declared - these could be amended if needed for a different data source.
+<p>&nbsp;</p>
 
 ## Room for Improvement
 
