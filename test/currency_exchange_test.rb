@@ -1,7 +1,3 @@
-# These are just suggested definitions to get you started.  Please feel
-# free to make any changes at all as you see fit.
-
-
 # http://test-unit.github.io/
 require 'test/unit'
 require 'currency_exchange'
@@ -26,4 +22,22 @@ class CurrencyExchangeTest < Test::Unit::TestCase
     assert_equal correct_rate, CurrencyExchange.rate(Date.new(2018,11,22), "EUR", "JPY")
   end
 
+  # Error handling
+  def test_exception_received_for_missing_date
+    assert_raises StandardError do
+      CurrencyExchange.rate(Date.new(2099,11,22), "JPY", "EUR")
+    end
+    assert_raise_message "No information for this date" do
+      CurrencyExchange.rate(Date.new(2099,11,22), "JPY", "EUR")
+    end
+  end
+
+  def test_exception_received_for_missing_from_currency
+    assert_raises StandardError do
+      CurrencyExchange.rate(Date.new(2018,11,22), "", "EUR")
+    end
+    assert_raise_message "Missing rate: Unable to calculate" do
+      CurrencyExchange.rate(Date.new(2018,11,22), "GBP", "")
+    end
+  end
 end
